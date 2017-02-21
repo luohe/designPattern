@@ -8,6 +8,20 @@
 
 </body>
 <script>
+    //迭代器模式：循环访问聚合对象中的各个元素
+
+
+    /*
+    * 迭代器的实现
+    * */
+    var each = function (ary, callback) {
+        for (var i = 0,l = ary.lenght;i<l;i++){
+            callback.call(ary[i],i,ary[i]);//把下标和元素作为参数传给callback
+        }
+    };
+    each([1,2,3],function (i,n) {
+        console.log([i,n]);
+    })
 
 </script>
 </html>
