@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="loginBtn">登录</button>
+<script>
+    /*
+    * 单例的简单实现
+    * */
+    var Singleton = function (name) {
+        this.name = name;
+        this.instance = null
+    };
+
+    Singleton.prototype.getName = function () {
+        console.log(this.name)
+    };
+
+    Singleton.getInstance = function (name) {
+        if(!this.instance){
+            this.instance = new Singleton(name);
+        }
+
+        return this.instance;
+    };
+
+    var a = Singleton.getInstance("to");
+    var b = Singleton.getInstance("se");
+
+    console.log(a === b);
+
+    /*
+    * 透明的单例模式
+    * 创建一个唯一DIV
+    * */
+    var createDiv = (function () {
+        var instance;
+        var CreateDiv = function (html) {
+            if(instance){
+                return instance;
+            }
+            this.html = html;
+            this.init();
+            return instance = this;
+        };
+
+        CreateDiv.prototype.init = function () {
+            var div = document.createElement('div');
+            div.innerHTML = this.html;
+            document.body.appendChild(div)
+        };
+
+        return CreateDiv;
+    })();
+
+    var a1 = new createDiv("seven1");
+    var b1 = new createDiv("seven2");
+
+    /**
+     * 用代理实现单例模式
+     */
+    var CreateDiv = function (html) {
+        this.html = html;
+        this.init();
+    };
+
+    CreateDiv.prototype.init = function () {
+        var div = document.createElement('div');
+        div.innerHTML = this.html;
+        document.body.appendChild(div)
+    };
+
+    var ProxySingletonCreateDiv = (function () {
+        var instance;
+        return function (html) {
+            if(!instance){
+                instance = new CreateDiv(html);
+            }
+            return instance;
+        }
+
+    })();
+    var a02 = new ProxySingletonCreateDiv('代理单例01');
+    var b02 = new ProxySingletonCreateDiv('代理单例02');
+    console.log(a02 == b02);
+
+    /*
+    * javascript中的单例模式
+    * 直接创建对象字面量：
+    *   一个类只保持有一个对象
+    *   如果声明在全局作用域下可在任意位置被访问
+    * */
+
+    /*
+    * 惰性单例：
+    * 在需要的时候才创建对象实例，
+    * 在实际开发中非常有用
+    * */
+
+    /*
+    * 惰性单例模式第一步：
+    * Demo:当点击按钮时才创建悬浮窗
+    * 优点：达到了惰性的目的
+    * 缺点：失去了单例的效果
+    * */
+    var createLoginLayer = function () {
+        var div = document.createElement("div");
+        div.innerHTML = "我是登录窗";
+        div.style.display = 'none';
+        document.body.appendChild(div);
+        return div;
+    };
+
+    document.getElementById('loginBtn').onclick = function () {
+        var loginLayer = createLoginLayer();
+        loginLayer.style.display = 'block'
+    };
+
+    /*
+    * 惰性单例Demo2
+    * 可用的惰性单例
+    * 实现一个变量放置我们创建的节点，通过判断该节点是否已经创建
+    *
+    * 优点：达到了惰性单例的目的
+    * 缺点：违反了单一职责原则，创建对象和管理单例的逻辑都放在了对象内部
+    * */
+    createLoginLayer = (function () {
+        var div;
+        return function () {
+            if(!div){
+                div = document.createElement("div");
+                div.innerHTML = "我是登录窗";
+                div.style.display = 'none';
+                document.body.appendChild(div);
+            }
+            return div;
+        }
+    })();
+    document.getElementById('loginBtn').onclick = function () {
+        var loginLayer = createLoginLayer();
+        loginLayer.style.display = 'block'
+    };
+
+    /*
+    * 通用的单例模型
+    *
+    * */
+        //抽离单例逻辑
+        var getSingle = function (fn) {
+            var result;
+            return function () {
+                return result||(result = fn.apply(this,arguments))
+            }
+        };
+        //创建业务逻辑
+        createLoginLayer = function () {
+            var div = document.createElement('div');
+            div.innerHTML = '我是一个登录框';
+            div.style.display = 'none';
+            document.body.appendChild(div);
+            return div;
+        };
+
+        //创建单例函数
+        var createSingleLoginLayer = getSingle(createLoginLayer);
+
+        var bindEvent = getSingle(function () {
+            document.getElementById('div1').onclick = function () {
+                alert('click')
+            };
+            return true;
+        })
+
+
+</script>
+</body>
+</html>

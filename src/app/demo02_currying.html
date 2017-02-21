@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    /**
+     * 函数柯里化
+     */
+    var currying = function (fn) {
+        var args = [];
+
+        return function () {
+            if (arguments.length === 0){
+                return fn.apply(this,args)
+            }else{
+                [].push.apply(args,arguments);
+                return arguments.callee;
+            }
+        }
+    };
+
+    var cost = (function () {
+        var money = 0;
+        return function () {
+            for (var i = 0,l = arguments.length;i<l;i++){
+                money += arguments[i]
+            }
+            return money;
+        }
+    })();
+
+    var cost = currying(cost); //转化为curring函数；
+    console.log(cost(100)(200)(300)());
+
+    /**
+     * uncurrying
+     */
+    Function.prototype.uncurrying = function () {
+        var self = this;
+        return function () {
+            var obj = Array.prototype.shift.call(arguments);
+            return self.apply(obj,arguments)
+        }
+    };
+
+    var push = Array.prototype.push.uncurrying();
+
+    (function () {
+        push(arguments,4);
+        console.log(arguments);
+    })(1,2,30);
+
+    /*
+    * 函数节流
+    * 当函数被频繁调用时对性能的消耗
+    * window.onresize
+    * mousemove
+    * 上传进度
+    * 解决：
+    * 通过setTimeout对事件函数进行节流
+    * */
+
+    var throttle = function (fn, interval) {
+        var _self = fn,
+            timer,
+            firstTime=true;
+
+        return function () {
+            var args = arguments,
+                    _me = this;
+
+            if(firstTime){
+                _self.apply(_me,args);
+                return firstTime = false;
+            }
+
+            if(timer){
+                return false;
+            }
+
+            timer = setTimeout(function () {
+                clearInterval(timer);
+                timer = null;
+                _self.apply(_me,args)
+            },interval || 500)
+        }
+    };
+    window.onresize = throttle(function () {
+        console.log(1111)
+    },500);
+
+
+    /*
+    * 惰性加载函数
+    * 因浏览器之间的差异，一些嗅探工作总是不可避免，比如我们需要一个在各个浏览器中能够通用的事件绑定函数addEvent,常见的写法如下：
+    * */
+        var addEvent = function (elem, type, handler) {
+            if(window.addEventListener){
+                return elem.addEventListener(type,handler,false)
+            }
+            if(window.attachEvent){
+                return elem.attachEvent('on'+type,handler)
+            }
+        };
+        //函数缺点，每次调用的时候都需要执行if条件分支；
+        addEvent = (function () {
+            if(window.addEventListener){
+                return function (elem, type, handler) {
+                    elem.addEventListener(type,handler,false)
+                }
+            }
+            if(window.attachEvent){
+                return function (elem, type, handler) {
+                    elem.attachEvent(type,handler);
+                }
+            }
+        })();
+
+        //惰性函数,事件绑定优化:在函数表达式中覆盖自己
+        addEvent = function (elem, type, handler) {
+            if(window.addEventListener){
+                addEvent = function (elem, type, handler) {
+                    elem.addEventListener(type,handler,false)
+                }
+            }else if(window.attachEvent){
+                addEvent = function (elem, type, handler) {
+                    elem.attachEvent(type,handler);
+                }
+            }
+            addEvent(elem, type, handler)
+        }
+
+</script>
+</html>

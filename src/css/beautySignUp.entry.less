@@ -1,0 +1,332 @@
+@import "./normalize/helper";
+@import "./normalize/reset";
+@import "./normalize/mixin";
+
+body{
+  background: #fff;
+}
+.content{
+  background: #fff;
+  .px2rem(padding-bottom,60)
+}
+.label{
+  color: @main_color;
+  font-size: 0.80rem;
+}
+.back_c{
+  color: #666;
+}
+.col-6{
+  width: 6%;
+  margin-left: 2%;
+}
+.col-17{
+  width: 14.5%;
+  margin-left: 4%;
+}
+.col-24{
+  width: 19%;
+  margin-left: 1%;
+}
+.col-28{
+  width:20%;
+  margin-left:10%;
+}
+.col-70{
+  width:60%;
+  margin-left: 3.5%;
+}
+
+.row .col-50{
+  width:52%;
+}
+
+.col-86{
+  width: 85%;
+  margin-left: 13%;
+}
+.close-picker{
+  .px2rem(width,120)
+}
+
+.list-block ul:before{
+  height:0;
+}
+.list-block ul:after{
+  height:0;
+}
+
+
+@media (min-width: 768px){
+  .col-17{
+    width: 12.6%;
+    margin-left: 2%;
+  }
+  .col-70{
+    width:55%;
+    margin-left: 2%;
+  }
+}
+.unit{
+  color: @main_color;
+}
+.list-block{
+  margin-top:1.4rem;
+  margin-bottom:0.2rem;
+}
+
+.list-block .customItem>.label{
+  line-height: 1.75rem;
+}
+
+.list-block .customItem>div{
+  .px2rem(height,95);
+  .px2rem(line-height,85);
+  &>input{
+    .px2rem(height,70);
+    //.px2rem(margin-top,15);
+    border: 1px solid @main_color;
+    .px2rem(border-radius,8);
+    .px2rem(font-size,30);
+  }
+  .select{
+    .px2rem(height,70);
+    //.px2rem(margin-top,15);
+    border: 1px solid @main_color;
+    .px2rem(border-radius,8);
+    .px2rem(font-size,30);
+    .px2rem( line-height,70);
+    padding: 0 0 0 .25rem;
+    color: #bbbbbb;
+    .selIcon{
+      margin:auto;
+      position: absolute;
+      top:0;
+      bottom:0;
+      right:5px;
+      display: block;
+      .px2rem(height,28);
+      .px2rem(width,28);
+      color: @main_color;
+      background: url("../images/selicon.png") no-repeat center;
+      background-size: 80%;
+    }
+  }
+}
+.birthday,.division{
+  color: #000;
+
+  .col-24:nth-child(2){
+    margin-left: 4%;
+  }
+
+  .select{
+    padding: 0 0 0 0!important;
+    input{
+      .px2rem( line-height,50);
+      float: left;
+      width:80%;
+      height:100%;
+      .px2rem(font-size,30);
+    }
+  }
+}
+
+@media (min-width: 768px){
+  .col-17{
+    width: 16.5%;
+    margin-left: 2%;
+  }
+  .row .col-50{
+    width:53.5%;
+  }
+  .col-70{
+    width:59%;
+    margin-left: 2%;
+  }
+  .birthday{
+    .col-24:nth-child(2){
+      margin-left: 2%;
+    }
+  }
+}
+
+
+.banner{
+  width:100%;
+  @diff : 100vw;
+  height : calc(~"@{diff}"/2.14);
+  img{
+    width:100%;
+    height:100%;
+  }
+}
+.list-block .customItem > .labelPhoto{
+  .px2rem(padding-top,20);
+  .px2rem(padding-bottom,20);
+  .px2rem(height,135);
+  .px2rem(line-height,90);
+}
+.list-block .customItem > .photo{
+  .px2rem(height,145);
+  position: relative;
+  .px2rem(padding-top,20);
+  .px2rem(padding-bottom,20);
+  .px2rem(margin-bottom,35);
+  .row{
+    overflow: visible;
+  }
+  .add{
+    .px2rem(height,95);
+    .px2rem(width,95);
+    position: absolute;
+    box-sizing: border-box;
+    margin-left:3.5%;
+    border-radius:2px;
+    overflow: hidden;
+    background: url("../images/addImg.jpg") no-repeat center;
+    background-size:100% 100%;
+    .addPhoto{
+      margin-left:0;
+      padding:0;
+      width:100%;
+      height:100%;
+      opacity: 0;
+      position: absolute;
+    }
+  }
+  .thumbnail{
+    .px2rem(height,95);
+    .px2rem(width,95);
+    .px2rem(margin-left,20);
+    padding: 2px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    -webkit-transition: border .2s ease-in-out;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
+    position: relative;
+    &>img{
+      width:100%;
+      height:100%;
+      margin-right: auto;
+      margin-left: auto;
+      max-width: 100%;
+      vertical-align: middle;
+    }
+    .delIcon{
+      .px2rem(width,35);
+      .px2rem(height,35);
+      background: @main_color;
+      -webkit-border-radius:50%;
+      -moz-border-radius:50%;
+      border-radius:50%;
+      position: absolute;
+      top:0;
+      right:0;
+      -webkit-transform: translate(50%, -50%);
+      -moz-transform: translate(50%, -50%);
+      -ms-transform: translate(50%, -50%);
+      -o-transform: translate(50%, -50%);
+      transform: translate(50%, -50%);
+      z-index:99;
+      background: url("../images/delIcon.png") no-repeat center 100% ;
+      background-size:100% 100%;
+    }
+  }
+
+  .thumbnailInfo{
+    font-size:0.70rem;
+    color: #bbbbbb;
+    .px2rem(line-height,40);
+    margin-left:0;
+    width:100%;
+    text-align: justify;
+    position: absolute;
+    .px2rem(bottom,-20)
+  }
+  .thumbnail:nth-of-type(2){
+    .px2rem(margin-left,135);
+  }
+}
+
+.agree{
+  box-sizing: border-box;
+  padding-left:7%;
+  width:100%;
+  .px2rem(height,50);
+  .radioIcon{
+    display: block;
+    float: left;
+    .px2rem(margin-right,20);
+    .px2rem(height,40);
+    .px2rem(width,40);
+    background: url("../images/disagree.png") no-repeat center;
+    -webkit-background-size:100% 100%;
+    background-size:100% 100%;
+  }
+  .agreementIcon{
+    background: url("../images/agreeIcon.png") no-repeat center;
+    -webkit-background-size:100% 100%;
+    background-size:100% 100%;
+  }
+  .agreement{
+    .px2rem(line-height,40);
+    .px2rem(font-size,30);
+    &>a{
+      color: @main_color;
+      border-bottom:1px solid @main_color;
+    }
+  }
+}
+
+.button-big{
+  width:80%;
+  margin: auto;
+  border: none;
+  background: @main_color;
+  color: white;
+  .px2rem(margin-top,65);
+  .px2rem(margin-bottom,35);
+}
+
+.error{
+  top:45%;
+  background: rgba(0,0,0,0.5);
+  color: #ff6072;
+}
+
+//picker框样式重定义
+.picker-modal{
+  background: white;
+}
+.pickerF{
+  width:100% !important;
+}
+
+.picker-mask{
+  position: fixed;
+  width:100vw;
+  height:100vh;
+  top:0;
+  left:0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index:99;
+}
+
+.picker-modal .bar:before{
+  background-color: #dddddd;
+}
+.picker-modal .bar:after{
+  background-color: white;
+}
+.picker-center-highlight:before{
+  background-color: #eeeeee;
+}
+.picker-center-highlight:after{
+  background-color: #eeeeee;
+}
+.picker-item.picker-selected{
+  color: black;
+}

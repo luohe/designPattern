@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @@include('./tpl/header.tpl')
+    <title>主播招聘</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <link rel="stylesheet" href="../css/beautySignUp.entry.css">
+</head>
+<body>
+    <div class="page-group">
+        <div class="page page-current" id='routers-step-2'>
+            <!--<header class="bar bar-nav">-->
+                <!--<a class="button button-link button-nav pull-left back">-->
+                    <!--<span class="icon icon-left back_c"></span>-->
+                <!--</a>-->
+                <!--<h1 class="title">大赛报名</h1>-->
+            <!--</header>-->
+            <div class="content">
+                <div class="banner">
+                    <img src="../images/banner.jpg" alt="">
+                </div>
+                <div class="list-block">
+                    <ul>
+                        <li>
+                            <div class="row customItem">
+                                <div class="col-28 label">姓名:</div>
+                                <div class="col-70 ">
+                                    <input type="text" id="name" placeholder="请输入您的姓名">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row customItem">
+                                <div class="col-28 label">英文名:</div>
+                                <div class="col-70 ">
+                                    <input type="text" id="EngName" placeholder="请输入您的英文名">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row customItem">
+                                <div class="col-28 label">性别:</div>
+                                <div class="col-70">
+                                    <input type="hidden" id="sex">
+                                    <div class="select relative sexSel" id="sexSel">
+                                        请选择
+                                        <span class="selIcon"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row customItem birthday">
+                                <div class="col-28 label">出生年月:</div>
+                                <div class="col-24">
+                                    <div class="select relative year clearfix">
+                                        <input  id="year" type="text" placeholder="年">
+                                        <span class="selIcon"></span>
+                                    </div>
+                                </div>
+                                <div class="col-24">
+                                    <div class="select relative month clearfix">
+                                        <input  id="month" type="text" placeholder="月">
+                                        <span class="selIcon"></span>
+                                    </div>
+                                </div>
+                                <div class="col-24">
+                                    <div class="select relative day clearfix">
+                                        <input id="day" type="text" placeholder="日">
+                                        <span class="selIcon"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row customItem">
+                                <div class="col-28 label">国籍:</div>
+                                <div class="col-70 ">
+                                    <input type="text" id="nationality" placeholder="请输入您的国籍">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row customItem">
+                                <div class="col-28 label">民族:</div>
+                                <div class="col-70 ">
+                                    <input type="text" id="nation" placeholder="请输入您的民族">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row customItem">
+                                <div class="col-28 label">身高:</div>
+                                <div class="col-50 ">
+                                    <input type="text" id="height" placeholder="请输入您的身高">
+                                </div>
+                                <div class="col-6 unit">cm</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row customItem">
+                                <div class="col-28 label">三维:</div>
+                                <div class="col-17">
+                                    <input type="text" id="dimensional01" placeholder="胸围">
+                                </div>
+                                <div class="col-17">
+                                    <input type="text" id="dimensional02"  placeholder="腰围">
+                                </div>
+                                <div class="col-17">
+                                    <input type="text" id="dimensional03" placeholder="臀围">
+                                </div>
+                                <div class="col-6 unit">cm</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row customItem  division">
+                                <div class="col-28 label">参赛区:</div>
+                                <div class="col-70">
+                                    <div class="select relative">
+                                        <input type="text" id="area" placeholder="请选择">
+                                        <input type="hidden" id="areaNum">
+                                        <span class="selIcon"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row customItem">
+                                <div class="col-28 label">联系方式:</div>
+                                <div class="col-70 ">
+                                    <input type="number" id="contact" placeholder="请输入您的联系方式">
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row customItem">
+                                <div class="col-28 label">所属主体:</div>
+                                <div class="col-70 label">
+                                    国旅大赛主办方
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row customItem">
+                                <div class="col-28 label labelPhoto">生活照:</div>
+                                <div class="col-70 photo">
+                                    <div class="row clearfix">
+                                        <div class="add col-20">
+                                            <form action="">
+                                                <input type="file" class="addPhoto">
+                                            </form>
+                                        </div>
+                                        <div class="thumbnail  col-20">
+                                            <input type="hidden">
+                                            <span class="delIcon"></span>
+                                            <img class="liftPhoto" src="../images/RGcode.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row customItem">
+                                <div class="col-28 label labelPhoto">艺术照:</div>
+                                <div class="col-70 photo">
+                                    <div class="row clearfix">
+                                        <div class="add col-20">
+                                            <form action="">
+                                                <input type="file" class="addPhoto">
+                                            </form>
+                                        </div>
+                                        <div class="thumbnail  col-20">
+                                            <input type="hidden">
+                                            <span class="delIcon"></span>
+                                            <img class="artPhoto" src="../images/RGcode.png" alt="">
+                                        </div>
+                                        <div class="col-100 thumbnailInfo">
+                                            带状正面照，大小≤2M
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="agree">
+                    <div class="radioIcon agreementIcon"></div>
+                    <div class="agreement unit ">
+                        阅读并同意《
+                        <a href="#routers-step-2-inner">参赛协议</a>
+                        》
+                    </div>
+                </div>
+                <p><a href="#" class="button button-big button-round btn-submit">提交申请</a></p>
+            </div>
+        </div>
+        <div class="page" id="routers-step-2-inner">
+            <div class="content">
+                路由 Demo 页面 B 内联 page
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../lib/zepto.min.js"></script>
+<script src="../js/config.js"></script>
+<script type='text/javascript' src='../lib/sm.js' charset='utf-8'></script>
+<script type='text/javascript' src='../lib/sm-extend.js' charset='utf-8'></script>
+<script src="../js/beautySignUp.entry.js"></script>
+</html>
