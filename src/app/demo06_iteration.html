@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    //外部迭代器
+    var Iterator = function (obj) {
+        var current = 0;
+
+        var length = obj.length;
+
+        var next = function () {
+            current += 1;
+        };
+
+        var isDone = function () {
+            return current >= obj.length;
+        };
+
+        var getCurrItem = function () {
+            return obj[current];
+        };
+
+        return {
+            next:next,
+            isDone: isDone,
+            length:length,
+            getCurrItem:getCurrItem
+        }
+    };
+
+    var compare = function (iterator1,iterator2) {
+        if(iterator1.length!== iterator2.length){
+            throw new Error ('iterator1 和 iterator2 不相等');
+        }
+
+        while( !iterator1.isDone() && !iterator2.isDone() ){
+            if ( iterator1.getCurrItem() !== iterator2.getCurrItem() ){
+                throw new Error ( 'iterator1 和 iterator2 不相等' );
+            }
+            iterator1.next();
+            iterator2.next();
+        }
+        alert ( 'iterator1 和 iterator2 相等' );
+    };
+
+    var iterator1 = Iterator([1,2,3]);
+    var iterator2 = Iterator([1,2,3]);
+
+    compare(iterator1,iterator2);
+    /*
+    *   内部迭代器：数组或类数组传入后返回数组或类数组，介入方式：
+    *                                                            1：函数内部处理
+    *                                                            2：回调函数介入
+    *   外部迭代器：提供迭代方法，手动迭代，可配置，灵活性高
+    *               迭代方法：取的当前参数
+    *                         生成下个一参数下标
+    *                         判断是否结束函数
+    * */
+
+    //迭代类数组对象和字面量对象
+    var $;
+    $.each = function (obj,callback) {
+        function isArraylike() {
+
+        }
+
+        var value,
+            i = 0,
+            length = obj.length,
+            isArray = (function () {
+                if(obj.length&&obj[0]){
+                    return true
+                }
+                return false
+            })();
+
+
+    }
+</script>
+</html>
