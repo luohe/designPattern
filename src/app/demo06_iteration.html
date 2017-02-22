@@ -18,10 +18,8 @@
         }
     };
     each([1,2,3],function (i,n) {
-
-
         console.log([i,n]);
-    })
+    });
 
     //外部迭代器
     var Iterator = function (obj) {
@@ -81,10 +79,6 @@
     //迭代类数组对象和字面量对象
     var $;
     $.each = function (obj,callback) {
-        function isArraylike() {
-
-        }
-
         var value,
             i = 0,
             length = obj.length,
@@ -95,7 +89,50 @@
                 return false
             })();
 
+        if (isArray){           //迭代类数组
+            for(;i<length;i++){
+                value  = callback.call(obj[i],i,obj[i]);
 
-    }
+                if(value === false){
+                    break
+                }
+            }
+        }else{
+            for (i in obj){
+                value = callback(obj[i],i,obj[i]);
+                if(value === false){
+                    break;
+                }
+            }
+        }
+        return obj;
+    };
+
+    //倒序迭代器
+    var reverseEach = function (ary, callback) {
+        for (var l = ary.length-1;l>=0;l--){
+            callback(l,ary[l])
+        }
+    };
+
+    //终止迭代器
+    var each01 = function (ary, callback) {
+        for (var i = 0,l = ary.length;i<l;i++){
+            if(callback(i,ary[i]) === false){
+                break
+            }
+        }
+    };
+
+    each01([1,2,3,4],function (i,n) {
+        if(n>3){
+            return false;
+        }
+        console.log(n);
+    });
+
+    //迭代器模式的应用举例
+
+
 </script>
 </html>
